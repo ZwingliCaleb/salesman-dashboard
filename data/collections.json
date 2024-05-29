@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "invoiceId": 1,
+      "collectionNumber": "COL001",
+      "date": "2024-06-10",
+      "status": "Valid",
+      "amount": 500
+    },
+    {
+      "id": 2,
+      "invoiceId": 1,
+      "collectionNumber": "COL002",
+      "date": "2024-06-12",
+      "status": "Bounced",
+      "amount": 500
+    }
+  ]
+  

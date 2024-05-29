@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "schoolId": 1,
+      "invoiceNumber": "INV001",
+      "items": ["Zeraki Analytics", "Zeraki Finance"],
+      "creationDate": "2024-05-30",
+      "dueDate": "2024-06-15",
+      "amount": 1500,
+      "paidAmount": 500,
+      "balance": 1000,
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "schoolId": 2,
+      "invoiceNumber": "INV002",
+      "items": ["Zeraki Timetable"],
+      "creationDate": "2024-05-30",
+      "dueDate": "2024-06-20",
+      "amount": 1000,
+      "paidAmount": 0,
+      "balance": 1000,
+      "status": "Pending"
+    }
+  ]
+  

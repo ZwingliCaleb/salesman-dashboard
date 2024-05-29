@@ -1,12 +1,27 @@
-const Home = () => {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-blue-500">
-          Welcome to Next.js with Tailwind CSS and TypeScript!
-        </h1>
+// pages/index.tsx
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+//import logo from '../public/logo.svg';
+
+const IndexPage = () => {
+  const router = useRouter();
+
+  const handleGoToDashboard = () => {
+    router.push('/dashboard');
+  };
+
+  return (
+    <div className="container mx-auto">
+      <header className="flex justify-center items-center py-10">
+        {/*<Image src={logo} alt="Logo" priority />*/}
+      </header>
+      <div className="flex justify-center">
+        <button className="bg-blue-500 text-white px-6 py-3 rounded-md" onClick={handleGoToDashboard}>
+          Go to Dashboard
+        </button>
       </div>
-    )
-  }
-  
-  export default Home
-  
+    </div>
+  );
+};
+
+export default IndexPage;
