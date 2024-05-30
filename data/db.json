@@ -1,37 +1,46 @@
 {
-  "collections": 100,
-  "signups": {
-    "zerakiAnalytics": {
-      "target": 100,
-      "achieved": 80
+  "collections": [
+    {
+      "id": 1,
+      "schoolId": 1,
+      "invoiceNumber": 101,
+      "date": "2024-06-01",
+      "amount": 500,
+      "status": "valid"
     },
-    "zerakiFinance": {
-      "target": 90,
-      "achieved": 70
+    {
+      "id": 2,
+      "schoolId": 1,
+      "invoiceNumber": 102,
+      "date": "2024-06-02",
+      "amount": 1000,
+      "status": "valid"
     },
-    "zerakiTimetable": {
-      "target": 60,
-      "achieved": 50
-    },
-    "total": 200,
-    "breakdown": {
-      "zerakiAnalytics": 80,
-      "zerakiFinance": 70,
-      "zerakiTimetable": 50
+    {
+      "id": 3,
+      "schoolId": 2,
+      "invoiceNumber": 201,
+      "date": "2024-06-03",
+      "amount": 1500,
+      "status": "bounced"
     }
-  },
-  "totalRevenue": 3000,
-  "bouncedCheques": 5,
+  ],
   "invoices": [
     {
-      "id": "41a4",
-      "invoiceNumber": "001",
-      "invoiceItem": "chairs",
-      "dueDate": "2024-05-31",
-      "amount": "2000",
-      "paidAmount": "1500",
-      "completed": false,
-      "schoolId": 1
+      "id": 1,
+      "schoolId": 1,
+      "invoiceNumber": 101,
+      "amountDue": 1500,
+      "dueDate": "2024-06-10",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "schoolId": 2,
+      "invoiceNumber": 201,
+      "amountDue": 2000,
+      "dueDate": "2024-06-12",
+      "status": "paid"
     }
   ],
   "schools": [
@@ -49,7 +58,7 @@
       "balance": 1500
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "School B",
       "type": "IGCSE",
       "product": "Zeraki Finance",
@@ -60,36 +69,6 @@
         "phone": "987654321"
       },
       "balance": 2500
-    },
-    {
-      "id": 2,
-      "name": "School C",
-      "type": "Secondary",
-      "product": "Zeraki Timetable",
-      "county": "Mombasa",
-      "registrationDate": "2022-07-22",
-      "contactInfo": {
-        "email": "schoolc@example.com",
-        "phone": "987654321"
-      },
-      "balance": 2000
     }
-  ],
-  "schoolSignups": {
-    "zerakiAnalytics": {
-      "Primary": 50,
-      "Secondary": 20,
-      "IGCSE": 10
-    },
-    "zerakiFinance": {
-      "Primary": 30,
-      "Secondary": 30,
-      "IGCSE": 10
-    },
-    "zerakiTimetable": {
-      "Primary": 20,
-      "Secondary": 20,
-      "IGCSE": 10
-    }
-  }
+  ]
 }
