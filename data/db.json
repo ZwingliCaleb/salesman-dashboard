@@ -1,0 +1,65 @@
+{
+  "collections": 100,
+  "signups": {
+      "zerakiAnalytics": { "target": 100, "achieved": 80},
+      "zerakiFinance": { "target": 90, "achieved": 70},
+      "zerakiTimetable": { "target": 60, "achieved": 50},
+      "total": 200,
+      "breakdown": {
+        "zerakiAnalytics": 80,
+        "zerakiFinance": 70,
+        "zerakiTimetable": 50
+      }
+  },
+  "totalRevenue": 3000,
+  "bouncedCheques": 5,
+  "invoices": [
+    {
+      "id": 1,
+      "schoolName": "School A",
+      "amountDue": 1500,
+      "dueDate": "2024-06-10",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "schoolName": "School B",
+      "amountDue": 2000,
+      "dueDate": "2024-06-12",
+      "status": "paid"
+    }
+  ],
+  "schools": [
+    {
+      "id": 1,
+      "name": "School A",
+      "type": "Primary",
+      "product": "Zeraki Analytics",
+      "county": "Nairobi",
+      "registrationDate": "2022-01-15",
+      "contactInfo": {
+        "email": "schoola@example.com",
+        "phone": "123456789"
+      },
+      "balance": 1500
+    },
+    {
+      "id": 2,
+      "name": "School B",
+      "type": "Secondary",
+      "product": "Zeraki Finance",
+      "county": "Mombasa",
+      "registrationDate": "2021-05-22",
+      "contactInfo": {
+        "email": "schoolb@example.com",
+        "phone": "987654321"
+      },
+      "balance": 2000
+    }
+  ],
+  "schoolSignups": {
+    "zerakiAnalytics": { "Primary": 50, "Secondary": 20, "IGCSE": 10 },
+    "zerakiFinance": { "Primary": 30, "Secondary": 30, "IGCSE": 10 },
+    "zerakiTimetable": { "Primary": 20, "Secondary": 20, "IGCSE": 10 }
+  }
+}

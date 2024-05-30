@@ -20,6 +20,13 @@ const Sidebar: React.FC = () => {
                             </Link>
                         </li>
                     </div>
+                    <div>
+                        <li>
+                            <Link href="/invoices" className="text-blue-500 hover:text-blue-700">
+                                Invoices
+                            </Link>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </div>
