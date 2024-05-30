@@ -3,30 +3,19 @@ import Link from "next/link";
 
 const Sidebar: React.FC = () => {
     return (
-        <div className="bg-gray-200 h-full w-48 p-4">
-            <div className="h-screen">
+        <div className="bg-teal-800 h-full w-48 p-4 fixed left-0 top-0 bottom-0 overflow-y-auto">
+            <div>
                 <ul>
-                    <div className="">
-                        <li className="mb-4">
-                            <Link href="/dashboard" className="text-blue-500 hover:text-blue-700">
+                    <li className="mb-4">
+                        <Link href="/dashboard" className="text-white font-bold hover:bg-teal-900 py-2 px-4 rounded-lg block">
                                 Dashboard
-                            </Link>
-                        </li>
-                    </div>
-                    < div className="">
-                        <li>
-                            <Link href="/schools" className="text-blue-500 hover:text-blue-700">
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/schools" className="text-white font-bold hover:bg-teal-900 py-2 px-4 rounded-lg block">
                                 Schools
-                            </Link>
-                        </li>
-                    </div>
-                    <div>
-                        <li>
-                            <Link href="/invoices" className="text-blue-500 hover:text-blue-700">
-                                Invoices
-                            </Link>
-                        </li>
-                    </div>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

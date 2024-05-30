@@ -1,5 +1,6 @@
-import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
+import Invoices from "@/components/Invoices";
+import Collections from "@/components/Collections";
 
 interface School {
     id: number;
@@ -19,6 +20,7 @@ const SchoolsPage: React.FC = () => {
     const [schools, setSchools] = useState<School[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,40 +42,53 @@ const SchoolsPage: React.FC = () => {
         fetchData();
     }, []);
 
+    const handleSchoolClick = (school: School) => {
+        setSelectedSchool(school);
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="container mx-auto p-4 ">  
+        <div className="container mx-auto p-4 pl-48">
             <h1 className="text-2xl font-bold mb-4">Schools</h1>
-            <table className="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th className="py-2 px-4 border-b">Name</th>
-                        <th className="py-2 px-4 border-b">Type</th>
-                        <th className="py-2 px-4 border-b">Product</th>
-                        <th className="py-2 px-4 border-b">County</th>
-                        <th className="py-2 px-4 border-b">Registration Date</th>
-                        <th className="py-2 px-4 border-b">Contact Email</th>
-                        <th className="py-2 px-4 border-b">Contact Phone</th>
-                        <th className="py-2 px-4 border-b">Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {schools.map((school) => (
-                        <tr key={school.id}>
-                            <td className="py-2 px-4 border-b">{school.name}</td>
-                            <td className="py-2 px-4 border-b">{school.type}</td>
-                            <td className="py-2 px-4 border-b">{school.product}</td>
-                            <td className="py-2 px-4 border-b">{school.county}</td>
-                            <td className="py-2 px-4 border-b">{school.registrationDate}</td>
-                            <td className="py-2 px-4 border-b">{school.contactInfo.email}</td>
-                            <td className="py-2 px-4 border-b">{school.contactInfo.phone}</td>
-                            <td className="py-2 px-4 border-b">{school.balance}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="flex">
+                <div className="w-1/4">
+                    <ul>
+                        {schools.map((school) => (
+                            <li key={school.id} className="mb-2">
+                                <button
+                                    className="bg-teal-600 text-white py-2 px-4 rounded w-full text-left"
+                                    onClick={() => handleSchoolClick(school)}
+                                >
+                                    {school.name}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="w-3/4 ml-4">
+                    {selectedSchool && (
+                        <div className="border p-6 rounded-md bg-gray-100">
+                            <h2 className="text-xl font-bold mb-2">{selectedSchool.name}</h2>
+                            <p>Type: {selectedSchool.type}</p>
+                            <p>Product: {selectedSchool.product}</p>
+                            <p>County: {selectedSchool.county}</p>
+                            <p>Registration Date: {selectedSchool.registrationDate}</p>
+                            <p>Contact Email: {selectedSchool.contactInfo.email}</p>
+                            <p>Contact Phone: {selectedSchool.contactInfo.phone}</p>
+                            <p>Balance: {selectedSchool.balance}</p>
+
+                            <div className="mt-4">
+                                <Invoices schoolId={selectedSchool.id} />
+                            </div>
+                            <div className="mt-4">
+                                <Collections schoolId={selectedSchool.id} />
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };

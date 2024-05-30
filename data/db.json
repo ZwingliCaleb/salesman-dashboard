@@ -1,32 +1,37 @@
 {
   "collections": 100,
   "signups": {
-      "zerakiAnalytics": { "target": 100, "achieved": 80},
-      "zerakiFinance": { "target": 90, "achieved": 70},
-      "zerakiTimetable": { "target": 60, "achieved": 50},
-      "total": 200,
-      "breakdown": {
-        "zerakiAnalytics": 80,
-        "zerakiFinance": 70,
-        "zerakiTimetable": 50
-      }
+    "zerakiAnalytics": {
+      "target": 100,
+      "achieved": 80
+    },
+    "zerakiFinance": {
+      "target": 90,
+      "achieved": 70
+    },
+    "zerakiTimetable": {
+      "target": 60,
+      "achieved": 50
+    },
+    "total": 200,
+    "breakdown": {
+      "zerakiAnalytics": 80,
+      "zerakiFinance": 70,
+      "zerakiTimetable": 50
+    }
   },
   "totalRevenue": 3000,
   "bouncedCheques": 5,
   "invoices": [
     {
-      "id": 1,
-      "schoolName": "School A",
-      "amountDue": 1500,
-      "dueDate": "2024-06-10",
-      "status": "pending"
-    },
-    {
-      "id": 2,
-      "schoolName": "School B",
-      "amountDue": 2000,
-      "dueDate": "2024-06-12",
-      "status": "paid"
+      "id": "41a4",
+      "invoiceNumber": "001",
+      "invoiceItem": "chairs",
+      "dueDate": "2024-05-31",
+      "amount": "2000",
+      "paidAmount": "1500",
+      "completed": false,
+      "schoolId": 1
     }
   ],
   "schools": [
@@ -44,9 +49,9 @@
       "balance": 1500
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "School B",
-      "type": "Secondary",
+      "type": "IGCSE",
       "product": "Zeraki Finance",
       "county": "Mombasa",
       "registrationDate": "2021-05-22",
@@ -54,12 +59,37 @@
         "email": "schoolb@example.com",
         "phone": "987654321"
       },
+      "balance": 2500
+    },
+    {
+      "id": 2,
+      "name": "School C",
+      "type": "Secondary",
+      "product": "Zeraki Timetable",
+      "county": "Mombasa",
+      "registrationDate": "2022-07-22",
+      "contactInfo": {
+        "email": "schoolc@example.com",
+        "phone": "987654321"
+      },
       "balance": 2000
     }
   ],
   "schoolSignups": {
-    "zerakiAnalytics": { "Primary": 50, "Secondary": 20, "IGCSE": 10 },
-    "zerakiFinance": { "Primary": 30, "Secondary": 30, "IGCSE": 10 },
-    "zerakiTimetable": { "Primary": 20, "Secondary": 20, "IGCSE": 10 }
+    "zerakiAnalytics": {
+      "Primary": 50,
+      "Secondary": 20,
+      "IGCSE": 10
+    },
+    "zerakiFinance": {
+      "Primary": 30,
+      "Secondary": 30,
+      "IGCSE": 10
+    },
+    "zerakiTimetable": {
+      "Primary": 20,
+      "Secondary": 20,
+      "IGCSE": 10
+    }
   }
 }

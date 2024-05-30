@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
 import TopCard from '../components/TopCard';
 import PieChart from '../components/PieChart';
 import BarChartComponent from '../components/BarChartComponent';
@@ -7,7 +6,7 @@ import UpcomingInvoices from '../components/UpcomingInvoices';
 
 const Dashboard = () => {
   return (
-    <div className="flex">
+    <div className="flex pl-48">
       <div className="flex-grow p-6">
         <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
