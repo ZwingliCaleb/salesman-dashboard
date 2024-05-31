@@ -22,7 +22,7 @@ const TopCard: React.FC<TopCardProps> = ({ title, endpoint, nestedKey }) => {
                 }
                 const data = await response.json();
                 setValue(nestedKey ? data[nestedKey] : data);
-            } catch (err) {
+            } catch (err: any) {
                 setError(err.message);
                 console.error(`Error fetching data from ${endpoint}:`, err);
             } finally {
