@@ -5,10 +5,11 @@ import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  
+  const showSidebar = router.pathname !== '/';
+
   return (
     <div className="flex">
-      <Sidebar />
+      {showSidebar && <Sidebar />}
       <div className="flex-grow p-6">
         <Component {...pageProps} />
       </div>
