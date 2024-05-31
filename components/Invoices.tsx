@@ -3,7 +3,7 @@ import InvoiceForm from './InvoiceForm';
 import CollectionForm from './CollectionForm';
 
 interface Invoice {
-  id: number;
+  id?: number; // id can be undefined when creating a new invoice
   invoiceNumber: string;
   invoiceItem: string;
   dueDate: string;
@@ -128,7 +128,7 @@ const Invoices: React.FC<InvoicesProps> = ({ schoolId }) => {
                 </button>
                 <button
                   className="bg-red-600 text-white py-1 px-3 rounded"
-                  onClick={() => handleDeleteInvoice(invoice.id)}
+                  onClick={() => handleDeleteInvoice(invoice.id!)}
                 >
                   Delete
                 </button>
@@ -161,7 +161,7 @@ const Invoices: React.FC<InvoicesProps> = ({ schoolId }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg">
             <CollectionForm
-              invoiceId={selectedInvoice.id}
+              invoiceId={selectedInvoice.id!}
               onSave={handleAddCollection}
               onClose={() => setShowCollectionForm(false)}
             />
