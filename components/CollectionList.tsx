@@ -1,8 +1,20 @@
 // components/CollectionList.tsx
 import React, { useState, useEffect } from 'react';
 
-const CollectionList = ({ schoolId }) => {
-  const [collections, setCollections] = useState([]);
+interface Collection {
+  id: number;
+  invoiceNumber: string;
+  date: string;
+  amount: number;
+  status: string;
+}
+
+interface CollectionListProps {
+  schoolId: number;
+}
+
+const CollectionList: React.FC<CollectionListProps> = ({ schoolId }) => {
+  const [collections, setCollections] = useState<Collection[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/collections?schoolId=${schoolId}`)
@@ -10,7 +22,7 @@ const CollectionList = ({ schoolId }) => {
       .then(data => setCollections(data));
   }, [schoolId]);
 
-  const handleUpdateStatus = (id, status) => {
+  const handleUpdateStatus = (id: number, status: string) => {
     fetch(`http://localhost:3001/collections/${id}`, {
       method: 'PATCH',
       headers: {
@@ -18,13 +30,13 @@ const CollectionList = ({ schoolId }) => {
       },
       body: JSON.stringify({ status })
     })
-    .then(response => response.json())
-    .then(data => setCollections(collections.map(col => col.id === id ? data : col)));
+      .then(response => response.json())
+      .then(data => setCollections(collections.map(col => col.id === id ? data : col)));
   };
 
   return (
     <div>
-      <h2>Collections</h2>
+      <h2 className="text-xl font-bold mb-2">Collections</h2>
       {collections.map(collection => (
         <div key={collection.id} className="border p-2 mb-2 rounded">
           <p>Invoice Number: {collection.invoiceNumber}</p>

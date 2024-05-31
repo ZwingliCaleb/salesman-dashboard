@@ -1,12 +1,29 @@
-import React, { useState, useEffect } from 'react';
+// components/InvoiceForm.tsx
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 
-const InvoiceForm = ({ invoice, onSave, onClose }) => {
-  const [formData, setFormData] = useState({
+interface Invoice {
+  id?: number;
+  invoiceNumber: string;
+  invoiceItem: string;
+  dueDate: string;
+  amount: number;
+  paidAmount: number;
+  completed: boolean;
+}
+
+interface InvoiceFormProps {
+  invoice: Invoice | null;
+  onSave: (invoice: Invoice) => void;
+  onClose: () => void;
+}
+
+const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoice, onSave, onClose }) => {
+  const [formData, setFormData] = useState<Invoice>({
     invoiceNumber: '',
     invoiceItem: '',
     dueDate: '',
-    amount: '',
-    paidAmount: '',
+    amount: 0,
+    paidAmount: 0,
     completed: false,
   });
 
@@ -16,7 +33,7 @@ const InvoiceForm = ({ invoice, onSave, onClose }) => {
     }
   }, [invoice]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -24,7 +41,7 @@ const InvoiceForm = ({ invoice, onSave, onClose }) => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSave(formData);
   };

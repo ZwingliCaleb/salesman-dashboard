@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
-const CollectionForm = ({ invoiceId, onSave, onClose }) => {
-  const [formData, setFormData] = useState({
+interface CollectionFormProps {
+  invoiceId: number;
+  onSave: (formData: CollectionFormData) => void;
+  onClose: () => void;
+}
+
+interface CollectionFormData {
+  invoiceId: number;
+  collectionNumber: string;
+  date: string;
+  amount: string;
+  status: string;
+}
+
+const CollectionForm: React.FC<CollectionFormProps> = ({ invoiceId, onSave, onClose }) => {
+  const [formData, setFormData] = useState<CollectionFormData>({
     invoiceId: invoiceId,
     collectionNumber: '',
     date: '',
@@ -9,7 +23,7 @@ const CollectionForm = ({ invoiceId, onSave, onClose }) => {
     status: 'Valid',
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -17,7 +31,7 @@ const CollectionForm = ({ invoiceId, onSave, onClose }) => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSave(formData);
     // Reset form data after submission

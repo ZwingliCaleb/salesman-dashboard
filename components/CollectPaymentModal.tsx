@@ -1,5 +1,11 @@
 import React from 'react';
 
+interface Invoice {
+  id: number;
+  schoolName: string;
+  amountDue: number;
+  // Add other properties as needed
+}
 interface CollectPaymentModalProps {
   selectedInvoice: Invoice | null;
   handlePaymentSubmit: (event: React.FormEvent) => void;

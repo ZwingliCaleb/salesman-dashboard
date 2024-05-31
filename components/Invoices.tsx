@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import InvoiceForm from './InvoiceForm';
 import CollectionForm from './CollectionForm';
 
-const Invoices = ({ schoolId }) => {
-  const [invoices, setInvoices] = useState([]);
-  const [selectedInvoice, setSelectedInvoice] = useState(null);
+interface Invoice {
+  id: number;
+  invoiceNumber: string;
+  invoiceItem: string;
+  dueDate: string;
+  amount: number;
+  paidAmount: number;
+  completed: boolean;
+}
+
+interface Collection {
+  id: number;
+  // Add properties for collection details
+}
+
+interface InvoicesProps {
+  schoolId: number;
+}
+
+const Invoices: React.FC<InvoicesProps> = ({ schoolId }) => {
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [showInvoiceForm, setShowInvoiceForm] = useState(false);
   const [showCollectionForm, setShowCollectionForm] = useState(false);
 
-  useEffect(() => {
-    fetchInvoices();
-  }, [schoolId]);
-
-  const fetchInvoices = async () => {
+  const fetchInvoices = useCallback(async () => {
     try {
       const response = await fetch(`http://localhost:3001/invoices?schoolId=${schoolId}`);
       const data = await response.json();
@@ -20,9 +35,13 @@ const Invoices = ({ schoolId }) => {
     } catch (error) {
       console.error('Error fetching invoices:', error);
     }
-  };
+  }, [schoolId]);
 
-  const handleSaveInvoice = async (invoice: any) => {
+  useEffect(() => {
+    fetchInvoices();
+  }, [schoolId, fetchInvoices]);
+
+  const handleSaveInvoice = async (invoice: Invoice) => {
     try {
       let response;
       if (invoice.id) {
@@ -48,7 +67,7 @@ const Invoices = ({ schoolId }) => {
     }
   };
 
-  const handleDeleteInvoice = async (invoiceId: any) => {
+  const handleDeleteInvoice = async (invoiceId: number) => {
     try {
       await fetch(`http://localhost:3001/invoices/${invoiceId}`, { method: 'DELETE' });
       fetchInvoices();
@@ -138,7 +157,7 @@ const Invoices = ({ schoolId }) => {
           </div>
         </div>
       )}
-      {showCollectionForm && (
+      {showCollectionForm && selectedInvoice && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg">
             <CollectionForm
