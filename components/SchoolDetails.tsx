@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 interface School {
   id: number;
@@ -27,7 +26,8 @@ interface Collection {
 }
 
 const SchoolDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const { id } = router.query;
   const [school, setSchool] = useState<School | null>(null);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [collections, setCollections] = useState<Collection[]>([]);
@@ -35,57 +35,60 @@ const SchoolDetails: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchSchoolData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/schools/${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch school data');
+    if (id) {
+      const fetchSchoolData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/schools/${id}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch school data');
+          }
+          const schoolData: School = await response.json();
+          setSchool(schoolData);
+        } catch (err: any) {
+          setError(err.message);
+          console.error('Error fetching school data:', err);
         }
-        const schoolData: School = await response.json();
-        setSchool(schoolData);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching school data:', err);
-      }
-    };
+      };
 
-    const fetchInvoices = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/invoices?schoolId=${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch invoices data');
+      const fetchInvoices = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/invoices?schoolId=${id}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch invoices data');
+          }
+          const invoicesData: Invoice[] = await response.json();
+          setInvoices(invoicesData);
+        } catch (err: any) {
+          setError(err.message);
+          console.error('Error fetching invoices data:', err);
         }
-        const invoicesData: Invoice[] = await response.json();
-        setInvoices(invoicesData);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching invoices data:', err);
-      }
-    };
+      };
 
-    const fetchCollections = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/collections?schoolId=${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch collections data');
+      const fetchCollections = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/collections?schoolId=${id}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch collections data');
+          }
+          const collectionsData: Collection[] = await response.json();
+          setCollections(collectionsData);
+        } catch (err: any) {
+          setError(err.message);
+          console.error('Error fetching collections data:', err);
+        } finally {
+          setLoading(false);
         }
-        const collectionsData: Collection[] = await response.json();
-        setCollections(collectionsData);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error fetching collections data:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
-    fetchSchoolData();
-    fetchInvoices();
-    fetchCollections();
+      fetchSchoolData();
+      fetchInvoices();
+      fetchCollections();
+    }
   }, [id]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!id) return <p>No school ID provided</p>; // Handle case where ID is null
 
   return (
     <div>

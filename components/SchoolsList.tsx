@@ -1,6 +1,5 @@
-// SchoolsList.tsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface School {
   id: number;
@@ -30,7 +29,7 @@ const SchoolsList: React.FC = () => {
         }
         const data: School[] = await response.json();
         setSchools(data);
-      } catch (err) {
+      } catch (err: any) {
         setError(err.message);
         console.error('Error fetching schools data:', err);
       } finally {
@@ -50,8 +49,10 @@ const SchoolsList: React.FC = () => {
       <ul>
         {schools.map((school) => (
           <li key={school.id}>
-            <Link to={`/schools/${school.id}`}>
-              {school.name} - {school.type}
+            <Link href={`/schools/${school.id}`}>
+              <a>
+                {school.name} - {school.type}
+              </a>
             </Link>
           </li>
         ))}

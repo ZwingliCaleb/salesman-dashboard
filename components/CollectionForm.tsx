@@ -9,7 +9,7 @@ const CollectionForm = ({ invoiceId, onSave, onClose }) => {
     status: 'Valid',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -17,7 +17,7 @@ const CollectionForm = ({ invoiceId, onSave, onClose }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     onSave(formData);
     // Reset form data after submission

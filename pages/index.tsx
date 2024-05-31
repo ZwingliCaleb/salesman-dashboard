@@ -1,7 +1,5 @@
 // pages/index.tsx
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-//import logo from '../public/logo.svg';
 
 const IndexPage = () => {
   const router = useRouter();

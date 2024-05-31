@@ -31,7 +31,7 @@ const SchoolsPage: React.FC = () => {
                 }
                 const data = await response.json();
                 setSchools(data);
-            } catch (err) {
+            } catch (err: any) {
                 setError(err.message);
                 console.error("Error fetching schools data:", err);
             } finally {

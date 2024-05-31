@@ -16,7 +16,7 @@ const InvoiceForm = ({ invoice, onSave, onClose }) => {
     }
   }, [invoice]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -24,7 +24,7 @@ const InvoiceForm = ({ invoice, onSave, onClose }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     onSave(formData);
   };

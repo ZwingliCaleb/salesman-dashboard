@@ -22,7 +22,7 @@ const Invoices = ({ schoolId }) => {
     }
   };
 
-  const handleSaveInvoice = async (invoice) => {
+  const handleSaveInvoice = async (invoice: any) => {
     try {
       let response;
       if (invoice.id) {
@@ -48,7 +48,7 @@ const Invoices = ({ schoolId }) => {
     }
   };
 
-  const handleDeleteInvoice = async (invoiceId) => {
+  const handleDeleteInvoice = async (invoiceId: any) => {
     try {
       await fetch(`http://localhost:3001/invoices/${invoiceId}`, { method: 'DELETE' });
       fetchInvoices();
@@ -57,7 +57,7 @@ const Invoices = ({ schoolId }) => {
     }
   };
 
-  const handleAddCollection = async (collection) => {
+  const handleAddCollection = async (collection: any) => {
     try {
       const response = await fetch('http://localhost:3001/collections', {
         method: 'POST',
