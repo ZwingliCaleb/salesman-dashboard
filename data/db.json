@@ -22,21 +22,10 @@
   },
   "totalRevenue": 3000,
   "bouncedCheques": 5,
-  "invoices": [
-    {
-      "id": "95c9",
-      "invoiceNumber": "001",
-      "invoiceItem": "chairs",
-      "dueDate": "2024-05-31",
-      "amount": "2000",
-      "paidAmount": "2000",
-      "completed": true,
-      "schoolId": 1
-    }
-  ],
+  "invoices": [],
   "schools": [
     {
-      "id": 1,
+      "id": "1",
       "name": "School A",
       "type": "Primary",
       "product": "Zeraki Analytics",
@@ -49,7 +38,7 @@
       "balance": 1500
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "School B",
       "type": "IGCSE",
       "product": "Zeraki Finance",
@@ -62,7 +51,7 @@
       "balance": 2500
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "School C",
       "type": "Secondary",
       "product": "Zeraki Timetable",
